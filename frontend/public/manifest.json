@@ -1,0 +1,21 @@
+{
+    "name": "PDFtools — Free Online File Tools",
+    "short_name": "PDFtools",
+    "description": "Compress, convert, and resize PDFs, images, audio, and video — 100% free, fast, and private.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0c0e14",
+    "theme_color": "#6366f1",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon"
+        }
+    ],
+    "categories": [
+        "utilities",
+        "productivity"
+    ]
+}
