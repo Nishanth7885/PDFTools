@@ -18,7 +18,12 @@ if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: [
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'https://safefileconverter.online',
+        'https://www.safefileconverter.online',
+    ],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
 }));

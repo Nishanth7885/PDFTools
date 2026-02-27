@@ -1,28 +1,36 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-export default function AdSense({ format = 'auto', className = '' }) {
+export default function AdSense({ format = 'auto', slot = '', className = '' }) {
+    const adRef = useRef(null);
+    const pushed = useRef(false);
+
     useEffect(() => {
-        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
+        if (pushed.current) return;
+        try {
+            if (adRef.current && adRef.current.children.length === 0) {
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+                pushed.current = true;
+            }
+        } catch (e) {
+            console.log('AdSense error:', e);
+        }
     }, []);
 
     return (
         <div className={`adsense-wrapper ${className}`}>
-            <div className="adsense-placeholder">
-                {/* Replace with your real AdSense code after approval:
-        <ins className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-          data-ad-slot="XXXXXXXXXX"
-          data-ad-format={format}
-          data-full-width-responsive="true"
-        />
-        */}
-                <p>Advertisement</p>
-                <span className="adsense-note">
-                    We show non-intrusive ads to cover server costs. All tools remain 100% free — forever.
-                </span>
+            <div className="adsense-container" ref={adRef}>
+                <ins className="adsbygoogle"
+                    style={{ display: 'block' }}
+                    data-ad-client="ca-pub-5025681441388003"
+                    data-ad-slot={slot || ''}
+                    data-ad-format={format}
+                    data-full-width-responsive="true"
+                />
             </div>
+            <span className="adsense-note">
+                Ads help us keep all 20+ tools free — no signup, no limits, forever.
+            </span>
         </div>
     );
 }
