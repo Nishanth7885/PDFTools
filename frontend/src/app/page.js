@@ -67,10 +67,19 @@ export default function Home() {
       <AdSense />
 
       {/* ── Tools Grid ── */}
-      <section className="how-it-works">
+      <section className="home-tools-section">
         <h2>All Tools</h2>
         <p>{tools.length} powerful tools — all free, all private</p>
-        <div className="home-layout-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 300px', gap: '40px', marginTop: 28, alignItems: 'start' }}>
+        <div className="home-layout-grid">
+          {/* Left Vertical Ad */}
+          <aside className="sidebar-ads sidebar-left">
+            <div className="sidebar-ad-card">
+              <p className="sidebar-label">Sponsor</p>
+              <div className="sidebar-ad-slot">
+                <AdSense format="vertical" />
+              </div>
+            </div>
+          </aside>
           <div className="tools-grid-container">
             <div className="tools-grid">
               {tools.map((tool) => (
@@ -85,10 +94,11 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="sidebar-ads" style={{ position: 'sticky', top: 100 }}>
-            <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-primary)', borderRadius: 16, padding: 16, boxShadow: 'var(--shadow-sm)' }}>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', textAlign: 'center', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 }}>Sponsor</p>
-              <div style={{ minHeight: 600 }}>
+          {/* Right Vertical Ad */}
+          <aside className="sidebar-ads sidebar-right">
+            <div className="sidebar-ad-card">
+              <p className="sidebar-label">Sponsor</p>
+              <div className="sidebar-ad-slot">
                 <AdSense format="vertical" />
               </div>
             </div>
