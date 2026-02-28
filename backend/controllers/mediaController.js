@@ -58,12 +58,13 @@ exports.videoToAudio = (req, res) => {
 
         command
             .output(outputPath)
-            .on('error', (err) => {
+            .on('error', (err, stdout, stderr) => {
                 console.error('Video→Audio error:', err.message);
+                console.error('FFmpeg stderr:', stderr);
                 if (fs.existsSync(inputPath)) fs.unlinkSync(inputPath);
                 if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
                 if (!res.headersSent) {
-                    res.status(500).json({ error: 'Conversion failed: ' + err.message });
+                    res.status(500).json({ error: 'Conversion failed: ' + err.message + ' (Details: ' + (stderr ? stderr.substring(0, 200) : '') + ')' });
                 }
             })
             .on('end', () => {
@@ -157,12 +158,13 @@ exports.convertAudio = (req, res) => {
 
         command
             .output(outputPath)
-            .on('error', (err) => {
+            .on('error', (err, stdout, stderr) => {
                 console.error('Audio convert error:', err.message);
+                console.error('FFmpeg stderr:', stderr);
                 if (fs.existsSync(inputPath)) fs.unlinkSync(inputPath);
                 if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
                 if (!res.headersSent) {
-                    res.status(500).json({ error: 'Conversion failed: ' + err.message });
+                    res.status(500).json({ error: 'Conversion failed: ' + err.message + ' (Details: ' + (stderr ? stderr.substring(0, 200) : '') + ')' });
                 }
             })
             .on('end', () => {
