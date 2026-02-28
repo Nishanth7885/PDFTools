@@ -141,6 +141,7 @@ exports.convertAudio = (req, res) => {
         };
 
         let command = ffmpeg(inputPath)
+            .noVideo()
             .audioCodec(codecMap[format] || format);
 
         if (!['wav', 'flac'].includes(format)) {
