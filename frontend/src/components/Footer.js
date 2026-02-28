@@ -48,6 +48,7 @@ export default function Footer() {
                             <Link href="/privacy-policy">Privacy Policy</Link>
                             <a href="#privacy">Zero Data Storage</a>
                             <a href="#privacy">How We&apos;re Free</a>
+                            <a href="mailto:ganeshmuthvel303@gmail.com">Contact Us</a>
                         </div>
                     </div>
                 </div>

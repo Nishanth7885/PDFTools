@@ -217,6 +217,7 @@ export default function Home() {
             { q: 'Do I need an account?', a: 'No. Everything works instantly without registration, email verification, or login. Just upload your file and get your result.' },
             { q: 'What formats are supported?', a: 'PDF, JPG, PNG, WebP, AVIF, TIFF, GIF, DOCX for documents & images. MP4, MKV, AVI, MOV, WebM for video. MP3, WAV, AAC, OGG, FLAC, OPUS, M4A for audio.' },
             { q: 'What\'s the file size limit?', a: '50MB per file for all tools. This is higher than most free alternatives (iLovePDF: 15MB, SmallPDF: 5MB free).' },
+            { q: 'How can I contact support?', a: 'If you have any questions, feedback, or issues, you can reach out directly via email at ganeshmuthvel303@gmail.com.' },
           ].map((item, i) => (
             <details key={i} style={{ padding: '18px 22px', borderRadius: 14, background: 'var(--bg-surface)', border: '1px solid var(--border-primary)', boxShadow: 'var(--shadow-sm)', cursor: 'pointer' }}>
               <summary style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)', listStyle: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
