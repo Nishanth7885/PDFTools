@@ -2,6 +2,49 @@ const { PDFDocument, degrees, rgb, StandardFonts } = require('pdf-lib');
 const fs = require('fs');
 const path = require('path');
 
+const { exec } = require('child_process');
+const util = require('util');
+const execPromise = util.promisify(exec);
+const os = require('os');
+
+const getGS = () => os.platform() === 'win32' ? 'gswin64c' : 'gs';
+
+const tryGhostscriptCompress = async (inputPath, outputPath) => {
+    try {
+        const cmd = `${getGS()} -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${outputPath}" "${inputPath}"`;
+        await execPromise(cmd);
+        return true;
+    } catch (e) { return false; }
+};
+
+const tryGhostscriptRepair = async (inputPath, outputPath) => {
+    try {
+        const cmd = `${getGS()} -o "${outputPath}" -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress "${inputPath}"`;
+        await execPromise(cmd);
+        return true;
+    } catch (e) { return false; }
+};
+
+const robustLoad = async (filePath) => {
+    try {
+        const bytes = fs.readFileSync(filePath);
+        const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+        return { doc, bytes };
+    } catch (e) {
+        if (e.message.includes('pattern') || e.message.includes('Failed to parse')) {
+            const tempOut = filePath + '.fixed.pdf';
+            const repaired = await tryGhostscriptRepair(filePath, tempOut);
+            if (!repaired) throw new Error('Cannot repair this PDF structure. Please ensure Ghostscript is installed (apt-get install ghostscript).');
+            const newBytes = fs.readFileSync(tempOut);
+            fs.unlinkSync(tempOut);
+            const doc = await PDFDocument.load(newBytes, { ignoreEncryption: true });
+            return { doc, bytes: newBytes };
+        }
+        throw e;
+    }
+};
+
+
 const cleanup = (filePath) => { if (filePath && fs.existsSync(filePath)) fs.unlinkSync(filePath); };
 const sendFile = (res, outputPath, filename, headers) => {
     res.setHeader('Content-Type', 'application/pdf');
@@ -35,7 +78,7 @@ exports.mergePDFs = async (req, res) => {
         if (files.length < 2) { files.forEach(f => cleanup(f.path)); return res.status(400).json({ error: 'Upload at least 2 PDFs' }); }
         const merged = await PDFDocument.create();
         let totalSize = 0;
-        for (const f of files) { const b = fs.readFileSync(f.path); totalSize += b.length; const d = await PDFDocument.load(b, { ignoreEncryption: true }); (await merged.copyPages(d, d.getPageIndices())).forEach(p => merged.addPage(p)); }
+        for (const f of files) { const { doc: d, bytes: b } = await robustLoad(f.path); totalSize += b.length; (await merged.copyPages(d, d.getPageIndices())).forEach(p => merged.addPage(p)); }
         const out = await merged.save({ useObjectStreams: true });
         const outPath = path.join(__dirname, '..', 'output', `merged-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); files.forEach(f => cleanup(f.path));
