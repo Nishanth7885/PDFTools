@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛠️ PDFTools
 
-## Getting Started
+A full-stack web application for PDF manipulation, image processing, and media conversion. Built with **Next.js** (frontend) and **Express.js** (backend).
 
-First, run the development server:
+---
+
+## 📦 Dependencies
+
+### Prerequisites
+
+| Dependency | Version | Description |
+|---|---|---|
+| [Node.js](https://nodejs.org/) | >= 18.x | JavaScript runtime environment |
+| [npm](https://www.npmjs.com/) | >= 9.x | Node package manager (comes with Node.js) |
+
+---
+
+### Frontend Dependencies
+
+| Package | Version | Description |
+|---|---|---|
+| [Next.js](https://nextjs.org/) | 16.1.6 | React framework for server-side rendering & routing |
+| [React](https://react.dev/) | 19.2.3 | UI component library |
+| [React DOM](https://react.dev/) | 19.2.3 | React rendering for the browser |
+| [pdfjs-dist](https://github.com/niclasp/pdfjs-dist) | ^5.4.624 | PDF rendering & parsing in the browser |
+
+---
+
+### Backend Dependencies
+
+| Package | Version | Description |
+|---|---|---|
+| [Express](https://expressjs.com/) | ^5.2.1 | Web server framework for Node.js |
+| [cors](https://github.com/expressjs/cors) | ^2.8.6 | Cross-Origin Resource Sharing middleware |
+| [Multer](https://github.com/expressjs/multer) | ^2.0.2 | Middleware for handling file uploads (`multipart/form-data`) |
+| [pdf-lib](https://pdf-lib.js.org/) | ^1.17.1 | Create & modify PDF documents (merge, split, rotate, watermark, etc.) |
+| [PDFKit](https://pdfkit.org/) | ^0.17.2 | PDF generation library (used for creating PDFs from scratch) |
+| [pdf-parse](https://www.npmjs.com/package/pdf-parse) | ^2.4.5 | Extract text content from PDF files |
+| [sharp](https://sharp.pixelplumbing.com/) | ^0.34.5 | High-performance image processing (resize, compress, convert) |
+| [Mammoth](https://github.com/mwilliamson/mammoth.js) | ^1.11.0 | Convert Word documents (`.docx`) to HTML |
+| [docx](https://docx.js.org/) | ^9.6.0 | Generate Word documents (`.docx`) programmatically |
+| [fluent-ffmpeg](https://github.com/fluent-ffmpeg/node-fluent-ffmpeg) | ^2.1.3 | FFmpeg wrapper for audio/video processing |
+| [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static) | ^5.3.0 | Static FFmpeg binaries (no system install needed) |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd PDFtools
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+**Backend:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd backend
+npm install
+```
 
-## Learn More
+**Frontend:**
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd frontend
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Run the development servers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Backend** (runs on default port):
 
-## Deploy on Vercel
+```bash
+cd backend
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Frontend** (runs on [http://localhost:3000](http://localhost:3000)):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+cd frontend
+npm run dev
+```
+
+---
+
+## 📁 Project Structure
+
+```
+PDFtools/
+├── backend/
+│   ├── controllers/     # Route handler logic
+│   ├── routes/          # API route definitions
+│   ├── uploads/         # Temporary file upload storage
+│   ├── output/          # Processed file output
+│   ├── server.js        # Express server entry point
+│   └── package.json
+├── frontend/
+│   ├── src/app/         # Next.js App Router pages
+│   │   ├── pdf-merger/
+│   │   ├── split-pdf/
+│   │   ├── rotate-pdf/
+│   │   ├── pdf-compressor/
+│   │   ├── jpg-to-pdf/
+│   │   ├── pdf-to-jpg/
+│   │   ├── pdf-to-word/
+│   │   ├── word-to-pdf/
+│   │   ├── html-to-pdf/
+│   │   ├── watermark-pdf/
+│   │   ├── unlock-pdf/
+│   │   ├── pdf-password/
+│   │   ├── page-numbers/
+│   │   ├── organize-pdf/
+│   │   ├── image-converter/
+│   │   ├── image-resizer/
+│   │   ├── jpg-compressor/
+│   │   ├── audio-converter/
+│   │   ├── video-to-audio/
+│   │   ├── metadata-stripper/
+│   │   └── privacy-policy/
+│   └── package.json
+└── README.md
+```
+
+---
+
+## ✨ Features
+
+- **PDF Tools** — Merge, Split, Rotate, Compress, Watermark, Add Page Numbers, Organize, Lock/Unlock
+- **Conversion** — PDF ↔ JPG, PDF ↔ Word, HTML → PDF
+- **Image Tools** — Convert formats, Resize, Compress JPG, Strip Metadata
+- **Media Tools** — Audio conversion, Video to Audio extraction
+
+---
+
+## 📄 License
+
+ISC

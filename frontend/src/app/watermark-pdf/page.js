@@ -22,7 +22,7 @@ export default function WatermarkPDF() {
         const fd = new FormData(); fd.append('file', file); fd.append('text', text); fd.append('opacity', (opacity / 100).toString()); fd.append('fontSize', fontSize.toString());
         try {
             const r = await fetch(`${API}/api/pdf/watermark`, { method: 'POST', body: fd });
-            if (!r.ok) throw new Error((await r.json()).error || 'Watermark failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Watermark failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), filename: `watermarked-${file.name}` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

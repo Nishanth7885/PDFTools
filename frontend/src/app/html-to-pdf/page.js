@@ -22,7 +22,7 @@ export default function HtmlToPDF() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title, content }),
             });
-            if (!r.ok) throw new Error((await r.json()).error || 'Failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), outputSize: +r.headers.get('X-Output-Size'), filename: `${title || 'document'}.pdf` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

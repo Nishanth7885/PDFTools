@@ -20,7 +20,7 @@ export default function RotatePDF() {
         const fd = new FormData(); fd.append('file', file); fd.append('angle', angle);
         try {
             const r = await fetch(`${API}/api/pdf/rotate`, { method: 'POST', body: fd });
-            if (!r.ok) throw new Error((await r.json()).error || 'Rotate failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Rotate failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), filename: `rotated-${file.name}` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

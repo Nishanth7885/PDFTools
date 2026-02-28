@@ -20,7 +20,7 @@ export default function OrganizePDF() {
         const fd = new FormData(); fd.append('file', file); fd.append('order', order);
         try {
             const r = await fetch(`${API}/api/pdf/organize`, { method: 'POST', body: fd });
-            if (!r.ok) throw new Error((await r.json()).error || 'Failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), originalPages: +r.headers.get('X-Original-Pages'), newPages: +r.headers.get('X-New-Pages'), outputSize: +r.headers.get('X-Output-Size'), filename: `organized-${file.name}` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

@@ -25,7 +25,7 @@ exports.compressPDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `compressed-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Compressed-Size': out.length });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Merge PDFs ──
@@ -40,7 +40,7 @@ exports.mergePDFs = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `merged-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); files.forEach(f => cleanup(f.path));
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': totalSize, 'X-Output-Size': out.length, 'X-Page-Count': merged.getPageCount(), 'X-File-Count': files.length });
-    } catch (e) { files.forEach(f => cleanup(f.path)); res.status(500).json({ error: e.message }); }
+    } catch (e) { files.forEach(f => cleanup(f.path)); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Protect PDF ──
@@ -55,7 +55,7 @@ exports.protectPDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `protected-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Split PDF ──
@@ -84,7 +84,7 @@ exports.splitPDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `split-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length, 'X-Original-Pages': src.getPageCount(), 'X-Extracted-Pages': indices.length });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Rotate PDF ──
@@ -100,7 +100,7 @@ exports.rotatePDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `rotated-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length, 'X-Page-Count': doc.getPageCount() });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Watermark PDF ──
@@ -121,7 +121,7 @@ exports.watermarkPDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `watermarked-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length, 'X-Page-Count': doc.getPageCount() });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── JPG/Images to PDF ──
@@ -141,7 +141,7 @@ exports.jpgToPDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `images-to-pdf-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); files.forEach(f => cleanup(f.path));
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': totalSize, 'X-Output-Size': out.length, 'X-Page-Count': doc.getPageCount(), 'X-File-Count': files.length });
-    } catch (e) { files.forEach(f => cleanup(f.path)); res.status(500).json({ error: e.message }); }
+    } catch (e) { files.forEach(f => cleanup(f.path)); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Unlock PDF (remove password) ──
@@ -163,7 +163,7 @@ exports.unlockPDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `unlocked-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length, 'X-Page-Count': doc.getPageCount() });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Add Page Numbers ──
@@ -210,7 +210,7 @@ exports.addPageNumbers = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `numbered-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length, 'X-Page-Count': total });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── Organize PDF (reorder/remove pages) ──
@@ -235,7 +235,7 @@ exports.organizePDF = async (req, res) => {
         const outPath = path.join(__dirname, '..', 'output', `organized-${Date.now()}.pdf`);
         fs.writeFileSync(outPath, out); cleanup(req.file.path);
         sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Output-Size': out.length, 'X-Original-Pages': totalPages, 'X-New-Pages': indices.length });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message }); }
+    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };
 
 // ── HTML / Text to PDF ──
@@ -297,5 +297,5 @@ exports.htmlToPDF = async (req, res) => {
             readStream.pipe(res);
             readStream.on('end', () => setTimeout(() => fs.unlink(outPath, () => { }), 5000));
         });
-    } catch (e) { res.status(500).json({ error: e.message }); }
+    } catch (e) { res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
 };

@@ -39,7 +39,7 @@ export default function ImageResizer() {
             });
 
             if (!response.ok) {
-                const errData = await response.json();
+                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch(e) { errData = { error: errText || 'Server error' }; }
                 throw new Error(errData.error || 'Resize failed');
             }
 

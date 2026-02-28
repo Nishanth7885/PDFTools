@@ -21,7 +21,7 @@ export default function UnlockPDF() {
         const fd = new FormData(); fd.append('file', file); fd.append('password', password);
         try {
             const r = await fetch(`${API}/api/pdf/unlock`, { method: 'POST', body: fd });
-            if (!r.ok) throw new Error((await r.json()).error || 'Unlock failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Unlock failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), outputSize: +r.headers.get('X-Output-Size'), filename: `unlocked-${file.name}` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

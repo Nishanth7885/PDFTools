@@ -20,7 +20,7 @@ export default function SplitPDF() {
         const fd = new FormData(); fd.append('file', file); fd.append('pages', pages);
         try {
             const r = await fetch(`${API}/api/pdf/split`, { method: 'POST', body: fd });
-            if (!r.ok) throw new Error((await r.json()).error || 'Split failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Split failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), originalSize: +r.headers.get('X-Original-Size'), outputSize: +r.headers.get('X-Output-Size'), originalPages: +r.headers.get('X-Original-Pages'), extractedPages: +r.headers.get('X-Extracted-Pages'), filename: `split-${file.name}` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

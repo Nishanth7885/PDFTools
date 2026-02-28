@@ -26,7 +26,7 @@ export default function JpgToPDF() {
         const fd = new FormData(); files.forEach(f => fd.append('files', f));
         try {
             const r = await fetch(`${API}/api/pdf/jpg-to-pdf`, { method: 'POST', body: fd });
-            if (!r.ok) throw new Error((await r.json()).error || 'Conversion failed');
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Conversion failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), fileCount: +r.headers.get('X-File-Count'), outputSize: +r.headers.get('X-Output-Size'), filename: 'images.pdf' });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }
