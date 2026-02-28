@@ -14,7 +14,10 @@ const tryGhostscriptCompress = async (inputPath, outputPath) => {
         const cmd = `${getGS()} -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${outputPath}" "${inputPath}"`;
         await execPromise(cmd);
         return true;
-    } catch (e) { return false; }
+    } catch (e) {
+        console.error("Ghostscript Compress Error:", e);
+        return false;
+    }
 };
 
 const tryGhostscriptRepair = async (inputPath, outputPath) => {
@@ -22,7 +25,10 @@ const tryGhostscriptRepair = async (inputPath, outputPath) => {
         const cmd = `${getGS()} -o "${outputPath}" -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress "${inputPath}"`;
         await execPromise(cmd);
         return true;
-    } catch (e) { return false; }
+    } catch (e) {
+        console.error("Ghostscript Repair Error:", e);
+        return false;
+    }
 };
 
 const robustLoad = async (filePath) => {
@@ -31,10 +37,13 @@ const robustLoad = async (filePath) => {
         const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
         return { doc, bytes };
     } catch (e) {
+        console.error("PDF-lib Load Error:", e.message);
         if (e.message.includes('pattern') || e.message.includes('Failed to parse')) {
             const tempOut = filePath + '.fixed.pdf';
+            console.log("Attempting Ghostscript Repair...");
             const repaired = await tryGhostscriptRepair(filePath, tempOut);
-            if (!repaired) throw new Error('Cannot repair this PDF structure. Please ensure Ghostscript is installed (apt-get install ghostscript).');
+            if (!repaired) throw new Error('Cannot repair this PDF structure. Ghostscript repair failed.');
+            console.log("Ghostscript Repair Successful, reloading...");
             const newBytes = fs.readFileSync(tempOut);
             fs.unlinkSync(tempOut);
             const doc = await PDFDocument.load(newBytes, { ignoreEncryption: true });
