@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const pdfParse = require('pdf-parse');
+const { PDFParse } = require('pdf-parse');
 const mammoth = require('mammoth');
 const PDFDocument = require('pdfkit');
 const {
@@ -22,7 +22,9 @@ exports.pdfToWord = async (req, res) => {
         const originalSize = pdfBuffer.length;
 
         // Extract text from PDF
-        const pdfData = await pdfParse(pdfBuffer);
+        const parser = new PDFParse({ data: pdfBuffer });
+        const pdfData = await parser.getText();
+        await parser.destroy();
         const text = pdfData.text || '';
 
         if (!text.trim()) {
