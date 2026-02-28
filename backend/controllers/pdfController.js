@@ -56,19 +56,32 @@ const sendFile = (res, outputPath, filename, headers) => {
     stream.on('end', () => setTimeout(() => fs.unlink(outputPath, () => { }), 5000));
 };
 
-// ── Compress PDF ──
+// ── Compress PDF (Ghostscript Robust) ──
 exports.compressPDF = async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-        const inputBytes = fs.readFileSync(req.file.path);
-        const pdfDoc = await PDFDocument.load(inputBytes, { ignoreEncryption: true });
-        pdfDoc.setTitle(''); pdfDoc.setAuthor(''); pdfDoc.setSubject('');
-        pdfDoc.setKeywords([]); pdfDoc.setProducer(''); pdfDoc.setCreator('');
-        const out = await pdfDoc.save({ useObjectStreams: true, addDefaultPage: false });
+        const inputPath = req.file.path;
         const outPath = path.join(__dirname, '..', 'output', `compressed-${Date.now()}.pdf`);
-        fs.writeFileSync(outPath, out); cleanup(req.file.path);
-        sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': inputBytes.length, 'X-Compressed-Size': out.length });
-    } catch (e) { cleanup(req.file?.path); res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
+        const originalSize = fs.statSync(inputPath).size;
+        
+        const gsSuccess = await tryGhostscriptCompress(inputPath, outPath);
+        
+        if (gsSuccess) {
+            cleanup(inputPath);
+            const compressedSize = fs.statSync(outPath).size;
+            sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': originalSize, 'X-Compressed-Size': compressedSize });
+        } else {
+            const { doc, bytes } = await robustLoad(inputPath);
+            doc.setTitle(''); doc.setAuthor(''); doc.setSubject('');
+            const out = await doc.save({ useObjectStreams: true, addDefaultPage: false });
+            fs.writeFileSync(outPath, out); cleanup(inputPath);
+            sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': originalSize, 'X-Compressed-Size': out.length });
+        }
+    } catch (e) { 
+        cleanup(req.file?.path); 
+        console.error("Compression error:", e);
+        res.status(500).json({ error: e.message.includes('Ghostscript') ? 'Ghostscript is not installed. Please install it to use robust PDF compression.' : e.message }); 
+    }
 };
 
 // ── Merge PDFs ──
