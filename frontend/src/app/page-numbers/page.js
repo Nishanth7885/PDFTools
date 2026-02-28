@@ -36,7 +36,7 @@ export default function PageNumbers() {
         const fd = new FormData(); fd.append('file', file); fd.append('position', position); fd.append('format', format); fd.append('fontSize', fontSize.toString());
         try {
             const r = await fetch(`${API}/api/pdf/page-numbers`, { method: 'POST', body: fd });
-            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || eTxt || 'Failed'); }
+            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || (eTxt.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : eTxt) || 'Failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), filename: `numbered-${file.name}` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }

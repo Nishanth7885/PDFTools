@@ -60,7 +60,7 @@ export default function VideoToAudio() {
             });
 
             if (!response.ok) {
-                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch(e) { errData = { error: errText || 'Server error' }; }
+                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch(e) { errData = { error: errText.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : (errText || 'Server error') }; }
                 throw new Error(errData.error || 'Conversion failed');
             }
 
