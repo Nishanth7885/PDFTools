@@ -25,6 +25,8 @@ export default function Footer() {
                             <Link href="/pdf-to-jpg">PDF to JPG</Link>
                             <Link href="/jpg-to-pdf">JPG to PDF</Link>
                             <Link href="/pdf-to-word">PDF to Word</Link>
+                            <Link href="/pdf-to-excel">PDF to Excel</Link>
+                            <Link href="/pdf-to-ppt">PDF to PPT</Link>
                             <Link href="/word-to-pdf">Word to PDF</Link>
                             <Link href="/rotate-pdf">Rotate PDF</Link>
                             <Link href="/watermark-pdf">Watermark</Link>
