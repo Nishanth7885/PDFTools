@@ -565,7 +565,7 @@ textarea {
   box-shadow: var(--shadow-md);
 }
 
-.tool-card-icon {
+.tool-card-icon {\n  color: currentColor;
   width: 46px;
   height: 46px;
   border-radius: 12px;
