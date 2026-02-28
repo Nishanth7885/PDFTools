@@ -1,10 +1,6 @@
 const ffmpeg = require('fluent-ffmpeg');
-const ffmpegPath = require('ffmpeg-static');
 const fs = require('fs');
 const path = require('path');
-
-// Point fluent-ffmpeg to the bundled static binary
-ffmpeg.setFfmpegPath(ffmpegPath);
 
 // ──────────────────────────────────────
 //  Video → Audio
