@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -37,7 +38,7 @@ export default function PDFCompressor() {
             });
 
             if (!response.ok) {
-                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch(e) { errData = { error: errText.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : (errText || 'Server error') }; }
+                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch (e) { errData = { error: errText.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : (errText || 'Server error') }; }
                 throw new Error(errData.error || 'Compression failed');
             }
 
@@ -74,8 +75,8 @@ export default function PDFCompressor() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(239, 68, 68, 0.08)' }}>📄</div>
-                    <h1>PDF Compressor</h1>
-                    <p>Reduce your PDF file size while keeping quality intact</p>
+                    <h1>Compress PDF Online — Free PDF Compressor</h1>
+                    <p>Reduce your PDF file size by up to 80% while keeping quality intact</p>
                     <div className="tool-privacy-note">🛡️ Your file is never stored</div>
                 </div>
 
@@ -138,6 +139,14 @@ export default function PDFCompressor() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How Our Free PDF Compressor Works</h2>
+                    <p>Our PDF compressor uses advanced Ghostscript-powered optimization to dramatically reduce PDF file sizes without visible quality loss. Whether you need to compress a PDF for email attachments, website uploads, or simply to save storage space, our tool handles it all.</p>
+                    <p>Supported input: Any standard PDF file up to 50MB. The compression engine optimizes embedded images, removes redundant data, and streamlines the internal structure while preserving text clarity, vector graphics, and document layout.</p>
+                    <p><strong>Common use cases:</strong> Shrinking large PDF reports for email, compressing scanned documents, reducing textbook PDFs for mobile devices, and preparing files for online form submissions with file size restrictions.</p>
+                    <p>Unlike other tools, Safe File Converter is 100% free with no signup, no watermarks, and no daily limits. Your files are processed securely and deleted immediately after download.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

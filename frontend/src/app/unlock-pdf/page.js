@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -32,7 +33,7 @@ export default function UnlockPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(245,158,11,0.08)' }}>🔓</div>
-                    <h1>Unlock PDF</h1>
+                    <h1>Unlock PDF Online — Free PDF Password Remover</h1>
                     <p>Remove password protection from a PDF file</p>
                 </div>
                 <AdSense />
@@ -67,6 +68,13 @@ export default function UnlockPDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Remove PDF Passwords for Free</h2>
+                    <p>Unlock password-protected PDF files so you can open, print, and edit them freely. Upload your locked PDF, enter the correct password, and download the unlocked version without any restrictions.</p>
+                    <p><strong>Common use cases:</strong> Unlocking old documents where you know the password but want restriction-free access, removing editing restrictions from your own files, and preparing PDFs for easy sharing.</p>
+                    <p>Free, fast, and private. No signup required. Files are processed and deleted instantly.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

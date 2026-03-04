@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'Print-Ready PDF Converter — CMYK, 300 DPI, Bleed',
-    description: 'Easily prepare your PDFs for professional printing. Convert to CMYK, upscale to 300 DPI, and automatically add bleed margins for free.',
+    title: 'Free Print-Ready PDF Converter — CMYK, 300 DPI, Bleed Margins | SafeFileConverter',
+    description: 'Prepare PDFs for professional printing for free. Convert RGB to CMYK, upscale to 300 DPI, and add bleed margins. No signup, instant preflighting.',
 };
 
 export default function Layout({ children }) {

@@ -3,7 +3,7 @@ import ThemeProvider from '@/components/ThemeProvider';
 
 export const metadata = {
   metadataBase: new URL('https://safefileconverter.online'),
-  title: 'PDFtools — Free Online PDF, Image & Audio Tools',
+  title: 'Safe File Converter — Free Online PDF, Image & Audio Tools',
   description: 'Compress, merge, split, rotate, watermark, protect & unlock PDFs. Convert images, extract audio from video — all free, fast, and private. No signup, no data stored.',
   keywords: 'PDF compressor, PDF merger, split PDF, rotate PDF, watermark PDF, unlock PDF, PDF to JPG, JPG to PDF, image compressor, image resizer, image converter, video to audio, audio converter, free online tools, no signup',
 };
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
             __html: `
               (function() {
                 try {
-                  var t = localStorage.getItem('pdftools-theme');
+                  var t = localStorage.getItem('pdftools-theme') || localStorage.getItem('sfc-theme');
                   if (t === 'dark' || t === 'light') {
                     document.documentElement.setAttribute('data-theme', t);
                   } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

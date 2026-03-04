@@ -8,7 +8,7 @@ export default function Footer() {
                     <div className="footer-brand">
                         <div className="footer-brand-name">
                             <div className="navbar-brand-icon">⚡</div>
-                            PDFtools
+                            Safe File Converter
                         </div>
                         <p>
                             Free, fast, and private file processing tools.
@@ -57,7 +57,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="footer-bottom">
-                    <p>© {new Date().getFullYear()} <strong>PDFtools</strong> — All rights reserved. We use ads to keep everything free.</p>
+                    <p>© {new Date().getFullYear()} <strong>Safe File Converter</strong> — All rights reserved. We use ads to keep everything free.</p>
                     <div className="footer-privacy-badge">🛡️ Zero Data Retention · 💚 Free Forever</div>
                 </div>
             </div>

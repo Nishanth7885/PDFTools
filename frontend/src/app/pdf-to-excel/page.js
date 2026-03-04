@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 export default function PDFToExcel() {
     const [file, setFile] = useState(null);
@@ -107,8 +108,8 @@ export default function PDFToExcel() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(34, 197, 94, 0.08)' }}>📊</div>
-                    <h1>PDF to Excel</h1>
-                    <p>Extract tables and text from PDF into editable Excel (.xlsx) spreadsheets</p>
+                    <h1>Convert PDF to Excel Online — Free PDF to XLSX</h1>
+                    <p>Extract tables, rows, and text from any PDF into editable Excel (.xlsx) spreadsheets</p>
                     <div className="tool-privacy-note">🛡️ Secure conversion in-browser — nothing uploaded</div>
                 </div>
 
@@ -150,6 +151,14 @@ export default function PDFToExcel() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How Our Free PDF to Excel Converter Works</h2>
+                    <p>This tool intelligently scans each page of your PDF and extracts text by analyzing horizontal and vertical positioning to reconstruct rows and columns. The result is a clean .xlsx spreadsheet that preserves your table structure.</p>
+                    <p><strong>Supported formats:</strong> Any text-based PDF file. Works best with invoices, financial statements, reports, price lists, and any document with tabular data. Note: scanned image-based PDFs require OCR and are not yet supported.</p>
+                    <p><strong>Privacy-first:</strong> Your PDF is converted entirely inside your browser. Nothing is uploaded to any server. This is a 100% client-side conversion — your data never leaves your device.</p>
+                    <p>Safe File Converter offers this tool completely free with no signup, no watermarks, and no daily conversion limits. Perfect for accountants, students, researchers, and anyone who needs editable data from a PDF.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

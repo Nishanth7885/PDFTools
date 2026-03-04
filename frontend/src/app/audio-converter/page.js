@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -110,7 +111,7 @@ export default function AudioConverter() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(245, 158, 11, 0.1)' }}>🎵</div>
-                    <h1>Audio Converter</h1>
+                    <h1>Convert Audio Online — Free Audio Format Converter</h1>
                     <p>Convert between MP3, WAV, AAC, OGG, FLAC, M4A, and OPUS formats</p>
                 </div>
 
@@ -211,6 +212,13 @@ export default function AudioConverter() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert Audio Files for Free</h2>
+                    <p>Convert audio files between all major formats with adjustable quality settings. Our FFmpeg-powered engine handles lossless (FLAC, WAV) and lossy (MP3, AAC, OGG) formats with configurable bitrate.</p>
+                    <p><strong>Supported:</strong> MP3, WAV, AAC, OGG, FLAC, OPUS, M4A, WMA. Convert in any direction. Adjustable bitrate from 64kbps to 320kbps.</p>
+                    <p>100% free with no signup, no daily limits, and no watermarks. Processed securely by Safe File Converter.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

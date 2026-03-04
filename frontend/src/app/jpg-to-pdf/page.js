@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -26,7 +27,7 @@ export default function JpgToPDF() {
         const fd = new FormData(); files.forEach(f => fd.append('files', f));
         try {
             const r = await fetch(`${API}/api/pdf/jpg-to-pdf`, { method: 'POST', body: fd });
-            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || (eTxt.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : eTxt) || 'Conversion failed'); }
+            if (!r.ok) { let eTxt = await r.text(); let eObj = {}; try { eObj = JSON.parse(eTxt); } catch (e) { } throw new Error(eObj.error || (eTxt.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : eTxt) || 'Conversion failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), fileCount: +r.headers.get('X-File-Count'), outputSize: +r.headers.get('X-Output-Size'), filename: 'images.pdf' });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }
@@ -37,7 +38,7 @@ export default function JpgToPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(34,197,94,0.08)' }}>📸</div>
-                    <h1>JPG to PDF</h1>
+                    <h1>Convert JPG to PDF Online — Free Image to PDF</h1>
                     <p>Convert JPG, PNG, or other images into a multi-page PDF</p>
                 </div>
                 <AdSense />
@@ -86,6 +87,13 @@ export default function JpgToPDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert Images to PDF for Free</h2>
+                    <p>Upload multiple JPG or PNG images and instantly combine them into a single, professional PDF document. Each image becomes its own page, maintaining original quality and aspect ratio.</p>
+                    <p><strong>Common use cases:</strong> Converting scanned documents into a single PDF, creating photo portfolios, combining receipt images for expense reports, and preparing image-based presentations.</p>
+                    <p>Completely free with no signup, no file limits, and instant processing. Your images are processed securely on our server and deleted immediately.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

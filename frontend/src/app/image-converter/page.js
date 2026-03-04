@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -74,7 +75,7 @@ export default function ImageConverter() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(139, 92, 246, 0.08)' }}>🔄</div>
-                    <h1>Image Converter</h1>
+                    <h1>Convert Image Format Online — Free Image Converter</h1>
                     <p>Convert images between JPG, PNG, WebP, AVIF, TIFF, and GIF</p>
                     <div className="tool-privacy-note">🛡️ Your file is never stored</div>
                 </div>
@@ -141,6 +142,13 @@ export default function ImageConverter() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert Image Formats for Free</h2>
+                    <p>Convert images between all major formats including JPG, PNG, WebP, AVIF, TIFF, and GIF. Our converter handles format-specific features like transparency (PNG), animation (GIF), and next-gen compression (WebP, AVIF).</p>
+                    <p><strong>Common use cases:</strong> Converting HEIC/HEIF photos from iPhone, preparing WebP images for websites, converting PNG screenshots to JPG for smaller sizes, and creating AVIF images for optimal web performance.</p>
+                    <p>Free forever, no signup, instant conversion. Safe File Converter processes and deletes your files immediately.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

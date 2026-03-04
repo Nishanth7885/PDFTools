@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -76,7 +77,7 @@ export default function JPGCompressor() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(34, 197, 94, 0.08)' }}>🗜️</div>
-                    <h1>JPG Compressor</h1>
+                    <h1>Compress JPG Online — Free Image Compressor</h1>
                     <p>Compress images with adjustable quality using MozJPEG engine</p>
                     <div className="tool-privacy-note">🛡️ Your file is never stored</div>
                 </div>
@@ -154,6 +155,13 @@ export default function JPGCompressor() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Compress Images for Free</h2>
+                    <p>Reduce your image file sizes by up to 90% without noticeable quality loss. Our compressor uses MozJPEG optimization, the same engine used by tech companies to serve billions of images efficiently.</p>
+                    <p><strong>Common use cases:</strong> Optimizing images for websites and blogs, reducing photo sizes for email attachments, compressing product images for online stores, and preparing images for social media.</p>
+                    <p>100% free with no signup, no limits, and no watermarks. Processed securely by Safe File Converter.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

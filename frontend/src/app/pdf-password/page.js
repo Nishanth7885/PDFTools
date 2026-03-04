@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -84,7 +85,7 @@ export default function PDFPassword() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(99, 102, 241, 0.08)' }}>🔒</div>
-                    <h1>PDF Password Protector</h1>
+                    <h1>Protect PDF with Password — Free PDF Encryption</h1>
                     <p>Encrypt your PDF with a password to prevent unauthorized access</p>
                 </div>
 
@@ -195,6 +196,13 @@ export default function PDFPassword() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Password Protect a PDF for Free</h2>
+                    <p>Encrypt your PDF with a strong password using AES encryption. Once protected, the PDF cannot be opened without entering the correct password. This tool uses industry-standard encryption for maximum security.</p>
+                    <p><strong>Common use cases:</strong> Protecting financial documents, securing legal contracts before email, encrypting medical records, and adding passwords to tax returns shared with accountants.</p>
+                    <p>100% free, no signup needed. Your file is encrypted and deleted from our server immediately after download.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

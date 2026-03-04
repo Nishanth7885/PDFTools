@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -74,7 +75,7 @@ export default function WordToPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(239, 68, 68, 0.1)' }}>📑</div>
-                    <h1>Word to PDF</h1>
+                    <h1>Convert Word to PDF Online — Free DOCX to PDF</h1>
                     <p>Convert Word documents (.docx) into PDF format</p>
                 </div>
 
@@ -131,6 +132,13 @@ export default function WordToPDF() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert Word to PDF for Free</h2>
+                    <p>Upload your Microsoft Word document and convert it to a professional, universally compatible PDF file in seconds. The PDF preserves your formatting, fonts, images, and layout exactly as intended.</p>
+                    <p><strong>Common use cases:</strong> Finalizing resumes for job applications, submitting assignments in PDF format, sharing contracts that shouldn't be easily edited, and preparing documents for print.</p>
+                    <p>Free forever with no watermarks, no signup, and immediate file deletion. Safe File Converter ensures your documents remain private.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -71,7 +72,7 @@ export default function ImageResizer() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(59, 130, 246, 0.08)' }}>📐</div>
-                    <h1>Image Resizer</h1>
+                    <h1>Resize Image Online — Free Image Resizer</h1>
                     <p>Resize images to exact dimensions or scale proportionally</p>
                     <div className="tool-privacy-note">🛡️ Your file is never stored</div>
                 </div>
@@ -157,6 +158,13 @@ export default function ImageResizer() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Resize Images for Free Online</h2>
+                    <p>Resize any image to exact pixel dimensions or a target file size. Set custom width and height, maintain aspect ratio, or let our tool automatically determine the best dimensions for your target size.</p>
+                    <p><strong>Common use cases:</strong> Resizing photos for passport/visa applications, creating properly sized social media images, meeting upload requirements for job portals, and batch-preparing product images.</p>
+                    <p>Completely free with instant results. No signup, no daily limits. Powered by Safe File Converter.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

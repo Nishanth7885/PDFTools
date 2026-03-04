@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'PDF to Excel — Convert PDF to XLSX Spreadsheets',
-    description: 'Convert PDF tables and data directly into editable Excel (.xlsx) spreadsheets. 100% free, private, and works instantly within your browser.',
+    title: 'Free PDF to Excel Converter Online — No Signup | SafeFileConverter',
+    description: 'Convert PDF tables and data into editable Excel (.xlsx) spreadsheets for free. Extract rows, columns, and text from PDFs. No signup, no limits, instant browser-based conversion.',
 };
 
 export default function Layout({ children }) {

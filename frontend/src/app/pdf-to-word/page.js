@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -76,7 +77,7 @@ export default function PDFToWord() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(59, 130, 246, 0.1)' }}>📝</div>
-                    <h1>PDF to Word</h1>
+                    <h1>Convert PDF to Word Online — Free PDF to DOCX</h1>
                     <p>Convert PDF documents into editable Word (.docx) files</p>
                 </div>
 
@@ -139,6 +140,13 @@ export default function PDFToWord() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert PDF to Word for Free</h2>
+                    <p>Our converter extracts text content from your PDF and generates an editable Microsoft Word (.docx) document. The output preserves headings, paragraphs, and basic formatting for easy editing.</p>
+                    <p><strong>Common use cases:</strong> Editing text in a PDF without Adobe Acrobat, updating old documents, repurposing PDF content for new reports, and making changes to received contracts.</p>
+                    <p>Safe File Converter is 100% free with no signup and no watermarks. Files are processed and deleted instantly — we never store your data.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

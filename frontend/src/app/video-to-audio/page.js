@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -97,7 +98,7 @@ export default function VideoToAudio() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(236, 72, 153, 0.1)' }}>🎬</div>
-                    <h1>Video to Audio</h1>
+                    <h1>Extract Audio from Video — Free Video to Audio Converter</h1>
                     <p>Extract audio from any video file — MP4, MKV, AVI, MOV, WebM & more</p>
                 </div>
 
@@ -187,6 +188,13 @@ export default function VideoToAudio() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Extract Audio from Video for Free</h2>
+                    <p>Upload any video file and extract just the audio track as a separate audio file. Choose your preferred output format and bitrate. Our FFmpeg-powered engine handles all major video formats.</p>
+                    <p><strong>Supported:</strong> Input: MP4, MKV, AVI, MOV, WebM. Output: MP3, WAV, AAC, OGG, FLAC, OPUS, M4A. Adjustable bitrate from 64kbps to 320kbps.</p>
+                    <p>Free forever with no signup and no limits. Safe File Converter processes and deletes your video immediately.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

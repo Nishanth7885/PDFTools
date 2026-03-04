@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -22,7 +23,7 @@ export default function HtmlToPDF() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title, content }),
             });
-            if (!r.ok) { let eTxt = await r.text(); let eObj={}; try { eObj=JSON.parse(eTxt); } catch(e){} throw new Error(eObj.error || (eTxt.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : eTxt) || 'Failed'); }
+            if (!r.ok) { let eTxt = await r.text(); let eObj = {}; try { eObj = JSON.parse(eTxt); } catch (e) { } throw new Error(eObj.error || (eTxt.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : eTxt) || 'Failed'); }
             const blob = await r.blob();
             setResult({ url: URL.createObjectURL(blob), pages: +r.headers.get('X-Page-Count'), outputSize: +r.headers.get('X-Output-Size'), filename: `${title || 'document'}.pdf` });
         } catch (e) { setError(e.message); } finally { setProcessing(false); }
@@ -33,7 +34,7 @@ export default function HtmlToPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(236,72,153,0.08)' }}>📝</div>
-                    <h1>Text to PDF</h1>
+                    <h1>Convert Text to PDF Online — Free Text to PDF Creator</h1>
                     <p>Convert text or notes into a beautifully formatted PDF document</p>
                 </div>
                 <AdSense />
@@ -73,6 +74,13 @@ export default function HtmlToPDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Create a PDF from Text for Free</h2>
+                    <p>Type or paste your text and instantly convert it to a professional, formatted PDF document. Our tool supports basic formatting including headings (#, ##, ###), bullet points (- or *), and paragraph spacing.</p>
+                    <p><strong>Common use cases:</strong> Converting meeting notes to shareable PDFs, creating quick letters or memos, turning README text into documents, and generating formatted reports from plain text.</p>
+                    <p>100% free, no signup, instant PDF generation. Powered by Safe File Converter.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

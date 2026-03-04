@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 export default function PDFToPPT() {
     const [file, setFile] = useState(null);
@@ -84,7 +85,7 @@ export default function PDFToPPT() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(245, 158, 11, 0.08)' }}>📊</div>
-                    <h1>PDF to PPT</h1>
+                    <h1>Convert PDF to PowerPoint — Free PDF to PPTX</h1>
                     <p>Convert PDF presentations into high-quality PowerPoint (.pptx)</p>
                     <div className="tool-privacy-note">🛡️ Secure conversion in-browser — nothing uploaded</div>
                 </div>
@@ -127,6 +128,13 @@ export default function PDFToPPT() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert PDF to PowerPoint for Free</h2>
+                    <p>This tool converts each page of your PDF into a high-fidelity PowerPoint slide. Each page is rendered as an image and embedded into the PPTX file, preserving fonts, layouts, charts, and visual elements exactly as they appear.</p>
+                    <p><strong>Common use cases:</strong> Converting lecture slides from PDF to editable presentations, repurposing PDF reports as slide decks, and editing company presentations distributed as PDFs.</p>
+                    <p>100% free, no signup, browser-based conversion. Your files never leave your device — complete privacy guaranteed.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

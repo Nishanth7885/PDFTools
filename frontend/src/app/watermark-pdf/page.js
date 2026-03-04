@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -33,7 +34,7 @@ export default function WatermarkPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(139,92,246,0.08)' }}>💧</div>
-                    <h1>Watermark PDF</h1>
+                    <h1>Add Watermark to PDF Online — Free PDF Watermark Tool</h1>
                     <p>Add a diagonal text watermark to every page of your PDF</p>
                 </div>
                 <AdSense />
@@ -76,6 +77,13 @@ export default function WatermarkPDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Add Watermarks to PDFs for Free</h2>
+                    <p>Protect your PDF documents by adding a custom text watermark across every page. Fully customize the watermark text, font size, opacity, color, and rotation angle. Perfect for branding and copyright protection.</p>
+                    <p><strong>Common use cases:</strong> Adding "CONFIDENTIAL" or "DRAFT" labels, branding client deliverables, protecting intellectual property, and marking preview copies of ebooks or reports.</p>
+                    <p>Free with no signup, no limits, and zero data retention. Safe File Converter never stores your documents.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

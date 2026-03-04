@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -104,7 +105,7 @@ export default function HEICtoJPGBatch() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(16, 185, 129, 0.08)' }}>🖼️</div>
-                    <h1>HEIC to JPG Batch Convert</h1>
+                    <h1>Convert HEIC to JPG — Free Batch HEIC Converter</h1>
                     <p>Convert multiple HEIC images from your iPhone or iPad to JPG format instantly.</p>
                 </div>
 
@@ -228,6 +229,13 @@ export default function HEICtoJPGBatch() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert HEIC to JPG for Free</h2>
+                    <p>Convert Apple HEIC/HEIF image format to universally compatible JPG in batch. HEIC is the default photo format on iPhones and iPads, but most websites, printers, and Windows PCs don't support it natively.</p>
+                    <p><strong>Common use cases:</strong> Making iPhone photos compatible with Windows, preparing HEIC photos for online forms, converting photos for printing services that only accept JPG, and sharing iPhone photos with Android users.</p>
+                    <p>100% free, browser-based conversion. No signup, no limits. Your photos never leave your device.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

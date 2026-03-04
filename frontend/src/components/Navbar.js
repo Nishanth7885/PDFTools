@@ -2,26 +2,30 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import UsageCounter from './UsageCounter';
 
 const tools = [
     { name: 'Compress', href: '/pdf-compressor' },
     { name: 'Merge', href: '/pdf-merger' },
     { name: 'Split', href: '/split-pdf' },
-    { name: 'PDF↔JPG', href: '/pdf-to-jpg' },
+    { name: 'PDF→JPG', href: '/pdf-to-jpg' },
     { name: 'JPG→PDF', href: '/jpg-to-pdf' },
-    { name: 'PDF↔Word', href: '/pdf-to-word' },
+    { name: 'PDF→Word', href: '/pdf-to-word' },
+    { name: 'PDF→Excel', href: '/pdf-to-excel' },
+    { name: 'PDF→PPT', href: '/pdf-to-ppt' },
     { name: 'Rotate', href: '/rotate-pdf' },
     { name: 'Watermark', href: '/watermark-pdf' },
-    { name: '🔒 Protect', href: '/pdf-password' },
-    { name: '🔓 Unlock', href: '/unlock-pdf' },
-    { name: '#️⃣ Pages', href: '/page-numbers' },
+    { name: 'Protect', href: '/pdf-password' },
+    { name: 'Unlock', href: '/unlock-pdf' },
+    { name: 'Pages', href: '/page-numbers' },
     { name: 'Organize', href: '/organize-pdf' },
     { name: 'Text→PDF', href: '/html-to-pdf' },
+    { name: 'Print-Ready', href: '/print-ready-pdf' },
     { name: 'Resize', href: '/image-resizer' },
     { name: 'Convert', href: '/image-converter' },
-    { name: '🛡️ Metadata', href: '/metadata-stripper' },
+    { name: 'Metadata', href: '/metadata-stripper' },
     { name: 'Video→Audio', href: '/video-to-audio' },
-    { name: '🎵 Audio', href: '/audio-converter' },
+    { name: 'Audio', href: '/audio-converter' },
 ];
 
 export default function Navbar() {
@@ -35,6 +39,7 @@ export default function Navbar() {
                     <div className="navbar-brand-icon">⚡</div>
                     Safe File Converter
                 </Link>
+                <UsageCounter />
                 <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
                     {menuOpen ? '✕' : '☰'}
                 </button>

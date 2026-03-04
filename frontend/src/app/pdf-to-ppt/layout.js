@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'PDF to PPT — Convert PDF to PowerPoint Free',
-    description: 'Convert PDF presentation files to high-quality PowerPoint (.pptx) online. Free, secure, and works exactly in your browser.',
+    title: 'Free PDF to PowerPoint Converter Online — No Signup | SafeFileConverter',
+    description: 'Convert PDF presentations to high-quality PowerPoint (.pptx) slides for free. Each page becomes a perfect slide. No signup, instant browser-based conversion.',
 };
 
 export default function Layout({ children }) {

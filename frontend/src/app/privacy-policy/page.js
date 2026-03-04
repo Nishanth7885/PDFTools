@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-    title: 'Privacy Policy — PDFtools',
+    title: 'Privacy Policy — Safe File Converter',
     description: 'Our privacy policy explains how we handle your files and data. TL;DR: We don\'t store anything.',
 };
 

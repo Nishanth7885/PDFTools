@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -31,7 +32,7 @@ export default function SplitPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(245,158,11,0.08)' }}>✂️</div>
-                    <h1>Split PDF</h1>
+                    <h1>Split PDF Online — Free PDF Page Extractor</h1>
                     <p>Extract specific pages from a PDF document</p>
                 </div>
                 <AdSense />
@@ -62,6 +63,14 @@ export default function SplitPDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Split PDF Files for Free</h2>
+                    <p>Our PDF splitter lets you extract specific pages from any PDF document. Simply enter the page numbers or ranges you want (e.g., 1-3, 5, 8-10) and download only the pages you need as a new, smaller PDF.</p>
+                    <p><strong>Supported formats:</strong> Any standard PDF file up to 50MB. Works with reports, contracts, ebooks, manuals, and any multi-page PDF document.</p>
+                    <p><strong>Common use cases:</strong> Extracting chapters from textbooks, separating individual pages from scanned documents, pulling specific pages from legal contracts, and trimming large PDF files to share only relevant content.</p>
+                    <p>Safe File Converter processes your file securely and deletes it immediately after download. No signup, no watermarks, no daily limits — completely free forever.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

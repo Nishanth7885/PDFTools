@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 export default function PDFToJPG() {
     const [file, setFile] = useState(null);
@@ -77,7 +78,7 @@ export default function PDFToJPG() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(245, 158, 11, 0.08)' }}>🖼️</div>
-                    <h1>PDF to JPG</h1>
+                    <h1>Convert PDF to JPG Online — Free PDF to Image</h1>
                     <p>Convert each PDF page to a high-quality JPG image</p>
                     <div className="tool-privacy-note">🛡️ Converted in-browser — nothing uploaded</div>
                 </div>
@@ -159,6 +160,13 @@ export default function PDFToJPG() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Convert PDF to JPG for Free</h2>
+                    <p>This tool renders each page of your PDF as a high-resolution JPG image directly in your browser. No server upload required — your files stay completely private on your device.</p>
+                    <p><strong>Common use cases:</strong> Creating image previews of PDF documents, extracting graphics from PDFs, converting PDF presentations to images for social media, and preparing document images for websites.</p>
+                    <p>100% free, no signup required, no daily limits, and no watermarks. Safe File Converter processes everything client-side for maximum privacy.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

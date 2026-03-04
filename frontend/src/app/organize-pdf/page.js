@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -31,7 +32,7 @@ export default function OrganizePDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(139,92,246,0.08)' }}>📋</div>
-                    <h1>Organize PDF</h1>
+                    <h1>Organize PDF Pages — Free PDF Page Manager</h1>
                     <p>Reorder, duplicate, or remove pages from your PDF</p>
                 </div>
                 <AdSense />
@@ -68,6 +69,13 @@ export default function OrganizePDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Reorganize PDF Pages for Free</h2>
+                    <p>Take full control of your PDF page order. Enter the exact page sequence you want — reorder pages, duplicate specific pages, or remove unwanted ones. Example: "3,1,2,5-8" creates a new PDF with page 3 first, then 1, 2, then pages 5 through 8.</p>
+                    <p><strong>Common use cases:</strong> Rearranging presentation slides, removing blank or irrelevant pages, duplicating important pages, and creating custom excerpts from large documents.</p>
+                    <p>Free forever with no limits. Files processed securely and deleted immediately.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

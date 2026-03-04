@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
 export default function PageNumbers() {
@@ -47,7 +48,7 @@ export default function PageNumbers() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(59,130,246,0.08)' }}>🔢</div>
-                    <h1>Page Numbers</h1>
+                    <h1>Add Page Numbers to PDF — Free Online Tool</h1>
                     <p>Add page numbers to every page of your PDF</p>
                 </div>
                 <AdSense />
@@ -105,6 +106,13 @@ export default function PageNumbers() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Add Page Numbers to a PDF for Free</h2>
+                    <p>Automatically add sequential page numbers to every page of your PDF document. Choose from six positions: top-left, top-center, top-right, bottom-left, bottom-center, or bottom-right.</p>
+                    <p><strong>Common use cases:</strong> Adding page numbers to reports before printing, numbering thesis or dissertation pages, organizing multi-page contracts, and preparing documents for professional binding.</p>
+                    <p>Completely free with no signup or watermarks. Powered by Safe File Converter.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }

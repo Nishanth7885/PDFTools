@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -65,7 +66,7 @@ export default function PDFMerger() {
             });
 
             if (!response.ok) {
-                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch(e) { errData = { error: errText.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : (errText || 'Server error') }; }
+                let errData; const errText = await response.text(); try { errData = JSON.parse(errText); } catch (e) { errData = { error: errText.includes('<html') ? 'This PDF is unsupported, corrupted, or too complex to process.' : (errText || 'Server error') }; }
                 throw new Error(errData.error || 'Merge failed');
             }
 
@@ -98,7 +99,7 @@ export default function PDFMerger() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(245, 158, 11, 0.08)' }}>📑</div>
-                    <h1>PDF Merger</h1>
+                    <h1>Merge PDF Online — Free PDF Combiner</h1>
                     <p>Combine multiple PDF files into a single document</p>
                 </div>
 
@@ -226,6 +227,13 @@ export default function PDFMerger() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Merge PDF Files for Free</h2>
+                    <p>Upload multiple PDF files and combine them into a single document in seconds. Drag and drop to reorder pages before merging. The output preserves all original formatting, images, and text perfectly.</p>
+                    <p><strong>Supported formats:</strong> Upload up to 20 PDF files at once, each up to 50MB. Works with any standard PDF — reports, invoices, certificates, scanned pages, and more.</p>
+                    <p>Unlike iLovePDF or SmallPDF which limit free merges, Safe File Converter offers unlimited merges with no watermarks, no signup, and zero data retention.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

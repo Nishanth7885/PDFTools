@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -77,7 +78,7 @@ export default function MetadataStripper() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(239, 68, 68, 0.08)' }}>🛡️</div>
-                    <h1>Metadata Stripper</h1>
+                    <h1>Remove Image Metadata — Free EXIF Data Stripper</h1>
                     <p>Remove EXIF data, GPS location, camera info & hidden metadata from images</p>
                 </div>
 
@@ -179,6 +180,13 @@ export default function MetadataStripper() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>Why You Should Remove Image Metadata</h2>
+                    <p>Every photo contains hidden EXIF metadata including GPS coordinates, camera model, date/time, and lens settings. Sharing photos online exposes your exact location and personal details to anyone who downloads the image.</p>
+                    <p><strong>What we strip:</strong> GPS coordinates, camera make/model, lens info, date stamps, software used, copyright info, thumbnail previews, and all other EXIF/IPTC/XMP metadata fields.</p>
+                    <p>100% free with instant results. No signup, no limits. Your photos stay private with Safe File Converter.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

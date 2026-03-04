@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -76,7 +77,7 @@ export default function PrintReadyPDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(56, 189, 248, 0.08)' }}>🖨️</div>
-                    <h1>Print-Ready Converter</h1>
+                    <h1>Print-Ready PDF Converter — Free CMYK, 300 DPI, Bleed</h1>
                     <p>Prepare designs for professional printing. Convert to CMYK, upscale downsampled images to 300 DPI, and automatically add bleed margins.</p>
                     <div className="tool-privacy-note">🛡️ Files are processed and immediately deleted. Zero data retention.</div>
                 </div>
@@ -179,6 +180,13 @@ export default function PrintReadyPDF() {
                 )}
 
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Make a Print-Ready PDF for Free</h2>
+                    <p>Our prepress tool prepares your PDF for professional printing by converting RGB to CMYK, ensuring all images meet the 300 DPI minimum, and optionally adding bleed margins around the document edges.</p>
+                    <p><strong>Common use cases:</strong> Preparing designs for Vistaprint, MOO, or local print shops, ensuring Etsy printable files meet quality standards, preflighting business card and flyer designs, and converting Canva exports to print-ready format.</p>
+                    <p>This tool replaces the $240/year Adobe Acrobat prepress workflow entirely. Free forever with no signup and no limits.</p>
+                </SeoContent>
             </div>
             <Footer />
         </>

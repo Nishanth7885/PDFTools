@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AdSense from '@/components/AdSense';
 import FileUploader from '@/components/FileUploader';
+import SeoContent from '@/components/SeoContent';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const fmt = (b) => { if (!b) return '0 B'; const k = 1024, s = ['B', 'KB', 'MB', 'GB'], i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; };
 
@@ -31,7 +32,7 @@ export default function RotatePDF() {
             <div className="tool-page animate-in">
                 <div className="tool-page-header">
                     <div className="tool-page-icon" style={{ background: 'rgba(59,130,246,0.08)' }}>🔄</div>
-                    <h1>Rotate PDF</h1>
+                    <h1>Rotate PDF Pages Online — Free PDF Rotator</h1>
                     <p>Rotate all pages of your PDF by 90°, 180°, or 270°</p>
                 </div>
                 <AdSense />
@@ -68,6 +69,13 @@ export default function RotatePDF() {
                     </div>
                 )}
                 <AdSense />
+
+                <SeoContent>
+                    <h2>How to Rotate PDF Pages for Free</h2>
+                    <p>Fix sideways or upside-down PDF pages instantly. Choose 90°, 180°, or 270° rotation and apply it to every page. The rotated PDF downloads immediately with all content preserved.</p>
+                    <p><strong>Common use cases:</strong> Fixing scanned documents that were fed sideways, correcting landscape vs portrait orientation, and preparing PDFs for proper viewing on different devices.</p>
+                    <p>100% free, no signup, no watermarks. Processed securely with instant deletion.</p>
+                </SeoContent>
             </div><Footer /></>
     );
 }
