@@ -25,5 +25,6 @@ router.post('/unlock', pdfUpload.single('file'), pdfController.unlockPDF);
 router.post('/page-numbers', pdfUpload.single('file'), pdfController.addPageNumbers);
 router.post('/organize', pdfUpload.single('file'), pdfController.organizePDF);
 router.post('/html-to-pdf', express.json({ limit: '5mb' }), pdfController.htmlToPDF);
+router.post('/print-ready', pdfUpload.single('file'), pdfController.printReadyPDF);
 
 module.exports = router;

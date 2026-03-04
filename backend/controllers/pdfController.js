@@ -72,9 +72,9 @@ exports.compressPDF = async (req, res) => {
         const inputPath = req.file.path;
         const outPath = path.join(__dirname, '..', 'output', `compressed-${Date.now()}.pdf`);
         const originalSize = fs.statSync(inputPath).size;
-        
+
         const gsSuccess = await tryGhostscriptCompress(inputPath, outPath);
-        
+
         if (gsSuccess) {
             cleanup(inputPath);
             const compressedSize = fs.statSync(outPath).size;
@@ -86,10 +86,10 @@ exports.compressPDF = async (req, res) => {
             fs.writeFileSync(outPath, out); cleanup(inputPath);
             sendFile(res, outPath, path.basename(outPath), { 'X-Original-Size': originalSize, 'X-Compressed-Size': out.length });
         }
-    } catch (e) { 
-        cleanup(req.file?.path); 
+    } catch (e) {
+        cleanup(req.file?.path);
         console.error("Compression error:", e);
-        res.status(500).json({ error: e.message.includes('Ghostscript') ? 'Ghostscript is not installed. Please install it to use robust PDF compression.' : e.message }); 
+        res.status(500).json({ error: e.message.includes('Ghostscript') ? 'Ghostscript is not installed. Please install it to use robust PDF compression.' : e.message });
     }
 };
 
@@ -363,4 +363,80 @@ exports.htmlToPDF = async (req, res) => {
             readStream.on('end', () => setTimeout(() => fs.unlink(outPath, () => { }), 5000));
         });
     } catch (e) { res.status(500).json({ error: e.message.includes('expected pattern') ? 'This PDF is encrypted, corrupted, or unsupported.' : e.message }); }
+};
+
+// ── Print-Ready PDF (CMYK, 300 DPI, Bleed) ──
+exports.printReadyPDF = async (req, res) => {
+    try {
+        if (!req.file) throw new Error('No file uploaded');
+        const inputPath = req.file.path;
+        const dpi = parseInt(req.body.dpi) || 300;
+        const cmyk = req.body.cmyk === 'true';
+        // Bleed in points. (e.g. 0.125 inches = 9 points)
+        const bleedPts = parseFloat(req.body.bleed) || 0;
+
+        let currentInput = inputPath;
+
+        // 1. Add Bleed/Margins using PDF-lib if requested
+        if (bleedPts > 0) {
+            const { doc, bytes } = await robustLoad(currentInput);
+            const pages = doc.getPages();
+            for (const page of pages) {
+                const { width, height } = page.getSize();
+                // Add bleed to width/height
+                page.setSize(width + bleedPts * 2, height + bleedPts * 2);
+                page.translateContent(bleedPts, Math.floor(bleedPts));
+            }
+            const modifiedBytes = await doc.save();
+            const tempBleedPath = inputPath + '-bleed.pdf';
+            fs.writeFileSync(tempBleedPath, modifiedBytes);
+            currentInput = tempBleedPath;
+        }
+
+        const outputPath = path.join(__dirname, '..', 'output', `print-ready-${Date.now()}.pdf`);
+
+        // 2. Run Ghostscript for prepress / CMYK / DPI
+        // /prepress embeds fonts and handles high-quality output
+        let gsCmd = `${getGS()} -dSAFER -dBATCH -dNOPAUSE -dNOCACHE -sDEVICE=pdfwrite -sOutputFile="${outputPath}" -dPDFSETTINGS=/prepress`;
+
+        if (cmyk) {
+            gsCmd += ' -sColorConversionStrategy=CMYK -dProcessColorModel=/DeviceCMYK -dOverrideICC=true -dConvertToCMYK=true ';
+        }
+
+        // Force 300 DPI for all images
+        gsCmd += ` -dDownsampleColorImages=true -dColorImageResolution=${dpi} `;
+        gsCmd += ` -dDownsampleGrayImages=true -dGrayImageResolution=${dpi} `;
+        gsCmd += ` -dDownsampleMonoImages=true -dMonoImageResolution=${dpi} `;
+
+        gsCmd += ` "${currentInput}"`;
+
+        try {
+            await execPromise(gsCmd);
+        } catch (gsError) {
+            console.error("Ghostscript Prepress Error:", gsError);
+            throw new Error('Failed to process print-ready format via Ghostscript.');
+        }
+
+        // Cleanup temp bleed file if created
+        if (currentInput !== inputPath && fs.existsSync(currentInput)) {
+            fs.unlinkSync(currentInput);
+        }
+
+        // Read resulting PDF to get sizes
+        const oldSize = fs.statSync(req.file.path).size;
+        const newSize = fs.existsSync(outputPath) ? fs.statSync(outputPath).size : 0;
+
+        cleanup(req.file.path);
+
+        sendFile(res, outputPath, path.basename(outputPath), {
+            'X-Original-Size': oldSize,
+            'X-Output-Size': newSize,
+            'X-DPI-Processed': dpi,
+            'X-CMYK-Processed': cmyk ? 'true' : 'false'
+        });
+
+    } catch (e) {
+        cleanup(req.file?.path);
+        res.status(500).json({ error: e.message });
+    }
 };

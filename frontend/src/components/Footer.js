@@ -35,6 +35,7 @@ export default function Footer() {
                             <Link href="/page-numbers">Page Numbers</Link>
                             <Link href="/organize-pdf">Organize PDF</Link>
                             <Link href="/html-to-pdf">Text to PDF</Link>
+                            <Link href="/print-ready-pdf">Print-Ready PDF</Link>
                         </div>
                         <div className="footer-col">
                             <h4>Image &amp; Media</h4>
