@@ -271,3 +271,45 @@ exports.stripMetadata = async (req, res) => {
         res.status(500).json({ error: 'Failed to strip metadata: ' + error.message });
     }
 };
+
+// ──────────────────────────────────────
+//  Convert HEIC to JPG
+// ──────────────────────────────────────
+exports.convertHeic = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        const heicConvert = require('heic-convert');
+        const inputPath = req.file.path;
+
+        const outputFilename = `heic-converted-${Date.now()}.jpg`;
+        const outputPath = path.join(__dirname, '..', 'output', outputFilename);
+
+        const inputBuffer = fs.readFileSync(inputPath);
+        const outputBuffer = await heicConvert({
+            buffer: inputBuffer,
+            format: 'JPEG',
+            quality: 0.90
+        });
+
+        fs.writeFileSync(outputPath, outputBuffer);
+
+        fs.unlinkSync(inputPath);
+
+        res.setHeader('Content-Type', 'image/jpeg');
+        res.setHeader('Content-Disposition', `attachment; filename="${outputFilename}"`);
+
+        const fileStream = fs.createReadStream(outputPath);
+        fileStream.pipe(res);
+        fileStream.on('end', () => {
+            setTimeout(() => fs.unlink(outputPath, () => { }), 5000);
+        });
+
+    } catch (error) {
+        console.error('HEIC conversion error:', error);
+        if (req.file && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+        res.status(500).json({ error: 'Failed to convert HEIC image: ' + error.message });
+    }
+};

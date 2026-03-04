@@ -38,6 +38,7 @@ export default function Footer() {
                         </div>
                         <div className="footer-col">
                             <h4>Image &amp; Media</h4>
+                            <Link href="/heic-to-jpg-batch">HEIC to JPG Batch</Link>
                             <Link href="/jpg-compressor">JPG Compressor</Link>
                             <Link href="/image-resizer">Image Resizer</Link>
                             <Link href="/image-converter">Image Converter</Link>
