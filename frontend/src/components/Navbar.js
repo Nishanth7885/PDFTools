@@ -33,7 +33,7 @@ export default function Navbar() {
             <div className="navbar-inner">
                 <Link href="/" className="navbar-brand">
                     <div className="navbar-brand-icon">⚡</div>
-                    PDFtools
+                    Safe File Converter
                 </Link>
                 <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
                     {menuOpen ? '✕' : '☰'}
