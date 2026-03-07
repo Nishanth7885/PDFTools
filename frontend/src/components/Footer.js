@@ -49,10 +49,11 @@ export default function Footer() {
                         </div>
                         <div className="footer-col">
                             <h4>Company</h4>
+                            <Link href="/about-us">About Us</Link>
+                            <Link href="/contact-us">Contact Us</Link>
                             <Link href="/privacy-policy">Privacy Policy</Link>
-                            <a href="#privacy">Zero Data Storage</a>
-                            <a href="#privacy">How We&apos;re Free</a>
-                            <a href="mailto:ganeshmuthvel303@gmail.com">Contact Us</a>
+                            <Link href="/terms-of-service">Terms of Service</Link>
+                            <a href="/#privacy">Zero Data Storage</a>
                         </div>
                     </div>
                 </div>
