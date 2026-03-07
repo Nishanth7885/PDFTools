@@ -2,6 +2,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
+  alternates: {
+    canonical: '/contact-us',
+  },
     title: 'Contact Us | SafeFileConverter',
     description: 'Have a question? Reach out to the Safe File Converter team for support, feature requests, or business inquiries.',
 };

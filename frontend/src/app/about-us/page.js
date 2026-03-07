@@ -2,6 +2,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
+  alternates: {
+    canonical: '/about-us',
+  },
     title: 'About Us | SafeFileConverter',
     description: 'Learn about Safe File Converter, our mission to provide free, fast, and secure file tools with zero data retention, and the team behind the platform.',
 };

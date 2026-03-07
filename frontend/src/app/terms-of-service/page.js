@@ -2,6 +2,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
+  alternates: {
+    canonical: '/terms-of-service',
+  },
     title: 'Terms of Service | SafeFileConverter',
     description: 'Read the Terms of Service for Safe File Converter. Understand the rules, guidelines, and policies for using our free file conversion tools.',
 };

@@ -2,6 +2,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
+  alternates: {
+    canonical: '/privacy-policy',
+  },
     title: 'Privacy Policy — Safe File Converter',
     description: 'Our privacy policy explains how we handle your files and data. TL;DR: We don\'t store anything.',
 };

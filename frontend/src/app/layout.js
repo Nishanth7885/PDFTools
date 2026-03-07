@@ -6,7 +6,11 @@ export const metadata = {
   title: 'Safe File Converter — Free Online PDF, Image & Audio Tools',
   description: 'Compress, merge, split, rotate, watermark, protect & unlock PDFs. Convert images, extract audio from video — all free, fast, and private. No signup, no data stored.',
   keywords: 'PDF compressor, PDF merger, split PDF, rotate PDF, watermark PDF, unlock PDF, PDF to JPG, JPG to PDF, image compressor, image resizer, image converter, video to audio, audio converter, free online tools, no signup',
+  alternates: {
+    canonical: '/',
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
